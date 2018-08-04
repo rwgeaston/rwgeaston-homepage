@@ -7,7 +7,7 @@ function link(url, text) {
 }
 
 const rows = [
-  [link("robert_easton_cv.pdf", "my CV")],
+  [link("files/robert_easton_cv.pdf", "my CV")],
   [
     link("admin", "Django admin"),
     " for ",
