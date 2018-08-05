@@ -42,7 +42,7 @@ const rows = [
   ],
   [
     "and my photos can be found ",
-    link("https://www.flickr.com/photos/roberteaston", "here"),
+    link("https://www.flickr.com/photos/roberteaston/albums", "here"),
     ", but these did not require any algorithms, merely lugging around a heavy SLR."
   ],
   [<hr />],
