@@ -51,7 +51,7 @@ const rows = [
     "The css is taken from ",
     link("http://bettermotherfuckingwebsite.com/", "here"),
     " in recognition of the fact I have followed no advice from there at all. ",
-    "The site is hosted on aws ec2/nginx and the django parts are running on gunicorn."
+    "The site is hosted on aws ec2/nginx and the django parts are running on gunicorn and postgres."
   ]
 ]
 
