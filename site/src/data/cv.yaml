@@ -1,71 +1,97 @@
 person:
   full_name: Robert Easton
-  headline: Software engineer and wedding photographer
-  email: hello@rwgeaston.com
-  phone: "+44 0000 000000"
-  location: United Kingdom
-  website: https://rwgeaston.com
-  links:
-    - label: GitHub
-      url: https://github.com/rwgeaston
+  headline: Senior Python Developer, Team Leader and Agile Enthusiast
+  email: rwgeaston@gmail.com
+  phone: "+44 7804651622"
+  location: 40 Blackhorse Road, London E17 7BE
+  website: http://rwgeaston.com/
+  links: []
 
 summary: >-
-  Pragmatic engineer with experience building production web systems and cloud
-  infrastructure. Strong focus on maintainable software, automation, and
-  delivery.
+  Senior software engineer with deep Python experience, strong leadership in
+  agile teams, and a focus on reliable delivery and automated testing.
 
 skills:
-  - category: Languages
+  - category: Core
     items:
-      - TypeScript
-      - JavaScript
-      - SQL
       - Python
-  - category: Cloud and DevOps
-    items:
-      - AWS
-      - Terraform
-      - GitHub Actions
-      - Docker
-  - category: Web
-    items:
-      - Node.js
-      - React
-      - Astro
-      - REST APIs
+      - Agile delivery
+      - Automated testing
+      - Algorithms
+      - Data architecture
 
 experience:
   - role: Senior Software Engineer
-    company: Example Company
-    location: Remote
-    start: Jan 2023
+    company: ComplyAdvantage
+    location: London, UK
+    start: Sep 2018
     end: Present
     achievements:
-      - Led delivery of customer-facing web platform improvements.
-      - Automated infrastructure provisioning with Terraform.
-      - Improved deployment reliability with CI/CD guardrails.
+      - AI-driven anti-money laundering startup.
+      - Engineering team lead on search and matching, a core component across products.
+      - Adopted a neglected project and built the highest-performing dev team at the company, with daily customer-facing releases and four nines reliability.
+      - Contributed to screening product architecture, especially data architecture.
+      - Set testing and release practices adopted across engineering to support reliable delivery.
 
-  - role: Software Engineer
-    company: Previous Company
+  - role: Senior Developer
+    company: UENI
     location: London, UK
-    start: Jun 2020
-    end: Dec 2022
+    start: Mar 2016
+    end: Sep 2018
     achievements:
-      - Built internal tools that reduced manual support workload.
-      - Implemented monitoring and incident response improvements.
+      - Startup creating budget websites and digital presence for small businesses.
+      - Backend architect designing Django microservices for site serving, large-scale data collection, and third-party synchronisation.
+      - Agile advocate and team lead of around five developers.
+      - Led major technical recruitment efforts including recruiter coordination, interviews, and careers fairs.
+      - Maintained a legacy backend for two years while incrementally replacing it with microservices.
+
+  - role: Scrum Master and Team Lead
+    company: Cisco
+    location: London, UK
+    start: Jan 2015
+    end: Mar 2016
+    achievements:
+      - Scrum master or product owner for several small teams helping transition to agile.
+      - Advocated for a three-month technical debt backlog clear-down which improved release cadence and test automation on a project with around fifty people.
+
+  - role: QA Engineer (Autotest, Telepresence Server)
+    company: Cisco
+    location: London, UK
+    start: Dec 2012
+    end: Jan 2015
+    achievements:
+      - Led automation for Telepresence Server test coverage from one hardware platform to broad continuous integration coverage across four platforms.
+      - Trained new hires and a ten-person outsourced team in Bangalore, including an initial three-week onsite trip and ongoing mentoring.
+
+  - role: QA Engineer (Audio and Video Testing)
+    company: Cisco
+    location: London, UK
+    start: Aug 2009
+    end: Dec 2012
+    achievements:
+      - Started as a manual QA tester on enterprise Cisco video conferencing products.
+      - Specialised in DSP audio and video processing testing.
+      - Automated performance and resilience testing areas that were previously fully manual.
 
 education:
-  - qualification: BSc (Hons) in Computer Science
-    institution: Example University
-    start: 2016
-    end: 2019
+  - qualification: BA Mathematics
+    institution: St John's College, University of Cambridge
+    start: "2005"
+    end: "2009"
+    notes: "2.1 with focus in pure maths, especially analysis, probability, graph theory, and combinatorics."
 
-projects:
-  - name: Personal Website
-    description: Static site and infrastructure managed with Astro and Terraform.
-    link: https://rwgeaston.com
+  - qualification: Summer Undergraduate Programmes
+    institution: IAS/Park City Mathematics Institute
+    start: Summer 2007
+    end: Summer 2008
+    notes: "Programmes in Algebraic Geometry and Brownian Motion respectively."
 
-certifications:
-  - name: AWS Certified Developer - Associate
-    issuer: Amazon Web Services
-    year: 2024
+  - qualification: A Levels
+    institution: Fakenham College
+    start: "2003"
+    end: "2005"
+    notes: "Double Maths, Physics, Psychology, Film Studies, Classical Civilisation. Principal's Award for Excellence 2005."
+
+projects: []
+
+certifications: []
