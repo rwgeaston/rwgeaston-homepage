@@ -33,6 +33,27 @@ resource "aws_cloudfront_origin_access_control" "site" {
   signing_protocol                  = "sigv4"
 }
 
+resource "aws_cloudfront_function" "rewrite_clean_urls" {
+  name    = "${var.project_name}-rewrite-clean-urls"
+  runtime = "cloudfront-js-1.0"
+  publish = true
+  comment = "Rewrite clean URLs to index.html for S3 origin"
+  code    = <<-EOT
+    function handler(event) {
+      var request = event.request;
+      var uri = request.uri;
+
+      if (uri.endsWith('/')) {
+        request.uri += 'index.html';
+      } else if (!uri.includes('.')) {
+        request.uri += '/index.html';
+      }
+
+      return request;
+    }
+  EOT
+}
+
 resource "aws_acm_certificate" "site" {
   provider          = aws.us_east_1
   domain_name       = var.domain_name
@@ -80,6 +101,11 @@ resource "aws_cloudfront_distribution" "site" {
     cached_methods         = ["GET", "HEAD"]
     compress               = true
     cache_policy_id        = data.aws_cloudfront_cache_policy.caching_optimized.id
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.rewrite_clean_urls.arn
+    }
   }
 
   restrictions {
