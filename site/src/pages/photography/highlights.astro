@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const highlights = [
+  'Bridal prep details',
+  'Ceremony reaction shot',
+  'Couple portrait in natural light',
+  'Evening dance floor energy'
+];
+---
+
+<BaseLayout title="RW Geaston | Highlights" description="Wedding photography highlights">
+  <section class="hero">
+    <p class="badge">Highlights</p>
+    <h1>Selected portfolio images</h1>
+    <p>
+      This page is set up for occasional updates. Replace placeholders with final images or embed
+      gallery links.
+    </p>
+  </section>
+
+  <section class="cv-section">
+    <div class="grid">
+      {
+        highlights.map((item) => (
+          <article class="card">
+            <div class="placeholder">{item}</div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,14 @@
+aws_region         = "eu-west-2"
+domain_name        = "rwgeaston.com"
+site_bucket_name   = "rwgeaston.com"
+hosted_zone_id     = "Z1234567890ABC"
+github_repository  = "your-github-user/rwgeaston-homepage"
+github_branch      = "main"
+
+# Set to false and provide github_oidc_provider_arn if one already exists in your AWS account.
+create_github_oidc_provider = true
+github_oidc_provider_arn    = ""
+
+tags = {
+  Environment = "prod"
+}

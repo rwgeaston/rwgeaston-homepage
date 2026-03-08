@@ -1,0 +1,60 @@
+name: Deploy static site
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy-site.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      S3_BUCKET_NAME: ${{ vars.S3_BUCKET_NAME }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+      AWS_DEPLOY_ROLE_ARN: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required variables
+        run: |
+          test -n "$AWS_REGION" || (echo "Missing repo variable: AWS_REGION" && exit 1)
+          test -n "$S3_BUCKET_NAME" || (echo "Missing repo variable: S3_BUCKET_NAME" && exit 1)
+          test -n "$CLOUDFRONT_DISTRIBUTION_ID" || (echo "Missing repo variable: CLOUDFRONT_DISTRIBUTION_ID" && exit 1)
+          test -n "$AWS_DEPLOY_ROLE_ARN" || (echo "Missing repo secret: AWS_DEPLOY_ROLE_ARN" && exit 1)
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "site/.nvmrc"
+          cache: "npm"
+          cache-dependency-path: "site/package-lock.json"
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: site
+
+      - name: Build static site
+        run: npm run build
+        working-directory: site
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload build to S3
+        run: aws s3 sync ./site/dist s3://$S3_BUCKET_NAME --delete
+
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"

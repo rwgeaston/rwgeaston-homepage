@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="RW Geaston | Home" description="CV and wedding photography portfolio">
+  <section class="hero">
+    <p class="badge">Personal site</p>
+    <h1>CV and wedding photography portfolio</h1>
+    <p>
+      This site is intentionally simple and static. It includes a web CV, a downloadable CV PDF,
+      and selected photography pages.
+    </p>
+  </section>
+
+  <section class="cv-section">
+    <h2>Explore</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>CV (HTML)</h3>
+        <p class="muted">Readable online version of your CV.</p>
+        <p><a href="/cv">Open CV page</a></p>
+      </article>
+      <article class="card">
+        <h3>CV (PDF)</h3>
+        <p class="muted">Downloadable PDF copy.</p>
+        <p><a href="/cv/rwgeaston-cv.pdf">Download PDF</a></p>
+      </article>
+      <article class="card">
+        <h3>Photography</h3>
+        <p class="muted">Wedding and portfolio highlights.</p>
+        <p><a href="/photography">Open gallery pages</a></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

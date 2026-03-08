@@ -1,0 +1,17 @@
+# Node
+node_modules/
+site/node_modules/
+
+# Build artifacts
+site/dist/
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+
+# Misc
+site/.astro/
+.DS_Store
+.env
+.env.*

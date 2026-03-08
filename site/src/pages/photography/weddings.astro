@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const photoSlots = [
+  'public/photos/weddings/aisle-moment.jpg',
+  'public/photos/weddings/confetti-exit.jpg',
+  'public/photos/weddings/first-dance.jpg',
+  'public/photos/weddings/sunset-portrait.jpg'
+];
+---
+
+<BaseLayout title="RW Geaston | Wedding Stories" description="Wedding photography stories">
+  <section class="hero">
+    <p class="badge">Wedding Stories</p>
+    <h1>Full-day wedding moments</h1>
+    <p class="muted">
+      Add or replace files under <code>site/public/photos/weddings/</code> and edit this list when
+      needed.
+    </p>
+  </section>
+
+  <section class="cv-section">
+    <div class="grid">
+      {
+        photoSlots.map((slot) => (
+          <article class="card">
+            <div class="placeholder">
+              <div>
+                <strong>Image slot</strong>
+                <br />
+                {slot}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
