@@ -1,0 +1,71 @@
+person:
+  full_name: Robert Easton
+  headline: Software engineer and wedding photographer
+  email: hello@rwgeaston.com
+  phone: "+44 0000 000000"
+  location: United Kingdom
+  website: https://rwgeaston.com
+  links:
+    - label: GitHub
+      url: https://github.com/rwgeaston
+
+summary: >-
+  Pragmatic engineer with experience building production web systems and cloud
+  infrastructure. Strong focus on maintainable software, automation, and
+  delivery.
+
+skills:
+  - category: Languages
+    items:
+      - TypeScript
+      - JavaScript
+      - SQL
+      - Python
+  - category: Cloud and DevOps
+    items:
+      - AWS
+      - Terraform
+      - GitHub Actions
+      - Docker
+  - category: Web
+    items:
+      - Node.js
+      - React
+      - Astro
+      - REST APIs
+
+experience:
+  - role: Senior Software Engineer
+    company: Example Company
+    location: Remote
+    start: Jan 2023
+    end: Present
+    achievements:
+      - Led delivery of customer-facing web platform improvements.
+      - Automated infrastructure provisioning with Terraform.
+      - Improved deployment reliability with CI/CD guardrails.
+
+  - role: Software Engineer
+    company: Previous Company
+    location: London, UK
+    start: Jun 2020
+    end: Dec 2022
+    achievements:
+      - Built internal tools that reduced manual support workload.
+      - Implemented monitoring and incident response improvements.
+
+education:
+  - qualification: BSc (Hons) in Computer Science
+    institution: Example University
+    start: 2016
+    end: 2019
+
+projects:
+  - name: Personal Website
+    description: Static site and infrastructure managed with Astro and Terraform.
+    link: https://rwgeaston.com
+
+certifications:
+  - name: AWS Certified Developer - Associate
+    issuer: Amazon Web Services
+    year: 2024

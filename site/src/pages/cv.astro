@@ -1,51 +1,110 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDateRange, loadCvData } from '../lib/cv-data';
+
+const cv = loadCvData();
+
+const contactParts = [cv.person.email, cv.person.phone, cv.person.location].filter(Boolean);
+const summaryParagraphs = cv.summary
+  .split('\n')
+  .map((line) => line.trim())
+  .filter(Boolean);
 ---
 
 <BaseLayout title="RW Geaston | CV" description="HTML CV for RW Geaston">
   <section class="hero">
     <p class="badge">Curriculum Vitae</p>
-    <h1>RW Geaston</h1>
-    <p class="muted">Email: hello@rwgeaston.com | Location: United Kingdom</p>
-    <p>
-      This is the HTML version of your CV. Replace placeholder details with your experience,
-      education, and achievements.
-    </p>
+    <h1>{cv.person.full_name}</h1>
+    {cv.person.headline && <p>{cv.person.headline}</p>}
+    {contactParts.length > 0 && <p class="muted">{contactParts.join(' | ')}</p>}
+    {cv.person.website && <p><a href={cv.person.website}>{cv.person.website}</a></p>}
+    {
+      cv.person.links && cv.person.links.length > 0 && (
+        <ul class="inline-list">
+          {cv.person.links.map((link) => (
+            <li><a href={link.url}>{link.label}</a></li>
+          ))}
+        </ul>
+      )
+    }
     <p><a href="/cv/robert_easton_cv.pdf">Download PDF version</a></p>
   </section>
 
   <section class="cv-section">
     <h2>Profile</h2>
-    <p>
-      Short professional summary goes here. Keep this to 3-5 lines focused on what you do best.
-    </p>
+    {summaryParagraphs.map((paragraph) => <p>{paragraph}</p>)}
   </section>
 
   <section class="cv-section">
     <h2>Experience</h2>
-    <article class="card">
-      <h3>Role Title - Company</h3>
-      <p class="muted">Jan 2022 - Present</p>
-      <ul>
-        <li>Achievement or responsibility 1</li>
-        <li>Achievement or responsibility 2</li>
-        <li>Achievement or responsibility 3</li>
-      </ul>
-    </article>
+    {
+      cv.experience.map((item) => (
+        <article class="card cv-entry">
+          <h3>{item.role} - {item.company}</h3>
+          <p class="muted">{[formatDateRange(item.start, item.end), item.location].filter(Boolean).join(' | ')}</p>
+          <ul>
+            {item.achievements.map((achievement) => <li>{achievement}</li>)}
+          </ul>
+        </article>
+      ))
+    }
   </section>
 
   <section class="cv-section">
     <h2>Education</h2>
-    <article class="card">
-      <h3>Qualification - Institution</h3>
-      <p class="muted">Year</p>
-    </article>
+    {
+      cv.education.map((item) => (
+        <article class="card cv-entry">
+          <h3>{item.qualification} - {item.institution}</h3>
+          <p class="muted">{formatDateRange(item.start, item.end)}</p>
+          {item.notes && <p>{item.notes}</p>}
+        </article>
+      ))
+    }
   </section>
 
   <section class="cv-section">
     <h2>Skills</h2>
-    <article class="card">
-      <p>List your core tools, technologies, and domain strengths.</p>
-    </article>
+    <div class="grid">
+      {
+        cv.skills.map((group) => (
+          <article class="card">
+            <h3>{group.category}</h3>
+            <p>{group.items.join(', ')}</p>
+          </article>
+        ))
+      }
+    </div>
   </section>
+
+  {
+    cv.projects && cv.projects.length > 0 && (
+      <section class="cv-section">
+        <h2>Projects</h2>
+        {cv.projects.map((item) => (
+          <article class="card cv-entry">
+            <h3>{item.name}</h3>
+            <p>{item.description}</p>
+            {item.link && <p><a href={item.link}>{item.link}</a></p>}
+          </article>
+        ))}
+      </section>
+    )
+  }
+
+  {
+    cv.certifications && cv.certifications.length > 0 && (
+      <section class="cv-section">
+        <h2>Certifications</h2>
+        <div class="grid">
+          {cv.certifications.map((item) => (
+            <article class="card">
+              <h3>{item.name}</h3>
+              <p class="muted">{[item.issuer, item.year].filter(Boolean).join(' | ')}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
 </BaseLayout>

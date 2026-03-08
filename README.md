@@ -45,6 +45,15 @@ terraform plan
 
 ## CV PDF
 
-Place your CV PDF at `site/public/cv/robert_easton_cv.pdf`.
+CV content is stored in `site/src/data/cv.yaml`.
 
-A placeholder file is included so links work during scaffold.
+Both outputs are generated from that same file:
+- HTML CV page (`/cv`)
+- PDF (`site/public/cv/robert_easton_cv.pdf`)
+
+Generate the PDF directly:
+
+```bash
+cd site
+npm run generate:cv-pdf
+```

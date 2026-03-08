@@ -4,11 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "generate:cv-pdf": "node scripts/generate-cv-pdf.mjs",
+    "build": "npm run generate:cv-pdf && astro build",
     "preview": "astro preview",
     "check": "astro check"
   },
   "dependencies": {
-    "astro": "^5.4.2"
+    "astro": "^5.4.2",
+    "js-yaml": "^4.1.0",
+    "pdfkit": "^0.17.2"
   }
 }
