@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'RW Geaston personal website' } = Astro.props;
+const { title, description = 'RWG Easton personal website' } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +26,7 @@ const { title, description = 'RW Geaston personal website' } = Astro.props;
   <body>
     <header class="site-header">
       <div class="site-header-inner">
-        <p class="brand"><strong>RW Geaston</strong></p>
+        <p class="brand"><strong>RWG Easton</strong></p>
         <nav class="nav" aria-label="Main">
           <a href="/">Home</a>
           <a href="/cv">CV</a>
@@ -38,7 +38,7 @@ const { title, description = 'RW Geaston personal website' } = Astro.props;
       <slot />
     </main>
     <footer class="site-footer">
-      <small>&copy; {new Date().getFullYear()} RW Geaston</small>
+      <small>&copy; {new Date().getFullYear()} RWG Easton</small>
     </footer>
   </body>
 </html>
