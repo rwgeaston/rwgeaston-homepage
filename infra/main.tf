@@ -46,25 +46,17 @@ resource "aws_acm_certificate" "site" {
 }
 
 resource "aws_route53_record" "cert_validation" {
-  for_each = {
-    for dvo in aws_acm_certificate.site.domain_validation_options : dvo.domain_name => {
-      name   = dvo.resource_record_name
-      record = dvo.resource_record_value
-      type   = dvo.resource_record_type
-    }
-  }
-
   zone_id = var.hosted_zone_id
-  name    = each.value.name
-  type    = each.value.type
+  name    = tolist(aws_acm_certificate.site.domain_validation_options)[0].resource_record_name
+  type    = tolist(aws_acm_certificate.site.domain_validation_options)[0].resource_record_type
   ttl     = 300
-  records = [each.value.record]
+  records = [tolist(aws_acm_certificate.site.domain_validation_options)[0].resource_record_value]
 }
 
 resource "aws_acm_certificate_validation" "site" {
   provider                = aws.us_east_1
   certificate_arn         = aws_acm_certificate.site.arn
-  validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
+  validation_record_fqdns = [aws_route53_record.cert_validation.fqdn]
 }
 
 resource "aws_cloudfront_distribution" "site" {
@@ -132,9 +124,10 @@ resource "aws_s3_bucket_policy" "site" {
 }
 
 resource "aws_route53_record" "site_a" {
-  zone_id = var.hosted_zone_id
-  name    = var.domain_name
-  type    = "A"
+  allow_overwrite = true
+  zone_id         = var.hosted_zone_id
+  name            = var.domain_name
+  type            = "A"
 
   alias {
     name                   = aws_cloudfront_distribution.site.domain_name
@@ -144,9 +137,10 @@ resource "aws_route53_record" "site_a" {
 }
 
 resource "aws_route53_record" "site_aaaa" {
-  zone_id = var.hosted_zone_id
-  name    = var.domain_name
-  type    = "AAAA"
+  allow_overwrite = true
+  zone_id         = var.hosted_zone_id
+  name            = var.domain_name
+  type            = "AAAA"
 
   alias {
     name                   = aws_cloudfront_distribution.site.domain_name
@@ -199,6 +193,17 @@ resource "aws_iam_role" "github_actions_deploy" {
   name               = local.deploy_role_name
   assume_role_policy = data.aws_iam_policy_document.github_assume_role.json
   tags               = local.common_tags
+}
+
+resource "aws_iam_role" "github_actions_terraform" {
+  name               = "${var.project_name}-github-actions-terraform"
+  assume_role_policy = data.aws_iam_policy_document.github_assume_role.json
+  tags               = local.common_tags
+}
+
+resource "aws_iam_role_policy_attachment" "github_actions_terraform_admin" {
+  role       = aws_iam_role.github_actions_terraform.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 data "aws_iam_policy_document" "github_deploy_permissions" {

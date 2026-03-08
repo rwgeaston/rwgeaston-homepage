@@ -9,6 +9,8 @@ site/dist/
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+infra/terraform.tfvars
+infra/backend.hcl
 
 # Misc
 site/.astro/

@@ -45,6 +45,6 @@ terraform plan
 
 ## CV PDF
 
-Replace `site/public/cv/rwgeaston-cv.pdf` with your real CV PDF.
+Place your CV PDF at `site/public/cv/robert_easton_cv.pdf`.
 
 A placeholder file is included so links work during scaffold.
